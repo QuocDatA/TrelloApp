@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context=".activities.IntroActivity">
+
+
+    <TextView
+        android:id="@+id/tvTitle"
+        android:text="@string/splash_name"
+        android:textAllCaps="false"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:textColor="@color/colorPrimary"
+        android:textStyle="bold"
+        android:textSize="@dimen/_50sdp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <ImageView
+        android:src="@drawable/image1"
+        android:scaleType="centerCrop"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_width="@dimen/_150sdp"
+        android:layout_height="@dimen/_150sdp"/>
+
+    <TextView
+        android:text="@string/let_s_get_stated"
+        android:textSize="@dimen/_20sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_gravity="center"
+        android:textStyle="bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:layout_gravity="center"
+        android:textSize="@dimen/_12sdp"
+        android:text="@string/text"
+        android:textColor="@color/secondary_text_color"
+        android:layout_marginHorizontal="@dimen/_20sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:layout_gravity="center"
+        android:textSize="@dimen/_12sdp"
+        android:text="@string/text_describe_below"
+        android:textColor="@color/secondary_text_color"
+        android:layout_marginHorizontal="@dimen/_20sdp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnSignInIntro"
+        android:text="@string/sign_in"
+        android:layout_marginHorizontal="@dimen/_20sdp"
+        android:background="@drawable/shape_button_rounded"
+        android:layout_marginTop="@dimen/_30sdp"
+        android:foreground="?attr/selectableItemBackground"
+        android:layout_gravity="center"
+        android:textSize="@dimen/_18sdp"
+        android:textColor="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnSignUpIntro"
+        android:text="@string/sign_up"
+        android:layout_marginHorizontal="@dimen/_20sdp"
+        android:background="@drawable/white_border_shape_button_rounded"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:foreground="?attr/selectableItemBackground"
+        android:layout_gravity="center"
+        android:textSize="@dimen/_18sdp"
+        android:textColor="@color/colorPrimary"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+</LinearLayout>

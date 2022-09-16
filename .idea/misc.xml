@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Kotlin Udemy/TrelloApp/app/src/main/res/drawable/ic_baseline_person.xml" value="0.117" />
+        <entry key="..\:/Kotlin Udemy/TrelloApp/app/src/main/res/drawable/ic_black_color_back.xml" value="0.117" />
+        <entry key="..\:/Kotlin Udemy/TrelloApp/app/src/main/res/drawable/ic_navigation_menu.xml" value="0.117" />
+        <entry key="..\:/Kotlin Udemy/TrelloApp/app/src/main/res/drawable/ic_white_color_back.xml" value="0.117" />
+        <entry key="..\:/Kotlin Udemy/TrelloApp/app/src/main/res/drawable/nav_header_main_background.xml" value="0.1085" />
+        <entry key="..\:/Kotlin Udemy/TrelloApp/app/src/main/res/drawable/shape_button_rounded.xml" value="0.128" />
+        <entry key="..\:/Kotlin Udemy/TrelloApp/app/src/main/res/drawable/white_border_shape_button_rounded.xml" value="0.128" />
+        <entry key="..\:/Kotlin Udemy/TrelloApp/app/src/main/res/layout/activity_intro.xml" value="0.264" />
+        <entry key="..\:/Kotlin Udemy/TrelloApp/app/src/main/res/layout/activity_main.xml" value="0.11614583333333334" />
+        <entry key="..\:/Kotlin Udemy/TrelloApp/app/src/main/res/layout/activity_my_profile.xml" value="0.2" />
+        <entry key="..\:/Kotlin Udemy/TrelloApp/app/src/main/res/layout/activity_sign_in.xml" value="0.175" />
+        <entry key="..\:/Kotlin Udemy/TrelloApp/app/src/main/res/layout/activity_sign_up.xml" value="0.2" />
+        <entry key="..\:/Kotlin Udemy/TrelloApp/app/src/main/res/layout/activity_splash.xml" value="0.259375" />
+        <entry key="..\:/Kotlin Udemy/TrelloApp/app/src/main/res/layout/app_bar_main.xml" value="0.19375" />
+        <entry key="..\:/Kotlin Udemy/TrelloApp/app/src/main/res/layout/dialog_progress.xml" value="0.2" />
+        <entry key="..\:/Kotlin Udemy/TrelloApp/app/src/main/res/layout/main_content.xml" value="0.259375" />
+        <entry key="..\:/Kotlin Udemy/TrelloApp/app/src/main/res/layout/nav_header_main.xml" value="0.259375" />
+        <entry key="..\:/Kotlin Udemy/TrelloApp/app/src/main/res/menu/activity_main_drawer.xml" value="0.25833333333333336" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>
