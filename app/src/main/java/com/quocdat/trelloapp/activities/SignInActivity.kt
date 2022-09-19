@@ -3,11 +3,9 @@ package com.quocdat.trelloapp.activities
 import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
-import android.util.Log
 import android.view.WindowManager
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.auth.User
 import com.quocdat.trelloapp.R
 import com.quocdat.trelloapp.base.BaseActivity
 import com.quocdat.trelloapp.firebase.FireStoreClass
@@ -61,7 +59,7 @@ class SignInActivity : BaseActivity() {
                 task ->
                 hideProgressDialog()
                 if (task.isSuccessful){
-                    FireStoreClass().signInUser(this)
+                    FireStoreClass().loadUserData(this)
                 }else{
                     Toast.makeText(this, "Sign In Failed!", Toast.LENGTH_LONG).show()
                 }
