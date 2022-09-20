@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
+import android.view.WindowManager
 import androidx.core.view.GravityCompat
 import com.bumptech.glide.Glide
 import com.google.android.material.navigation.NavigationView
@@ -27,10 +28,19 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        window.setFlags(
+            WindowManager.LayoutParams.FLAG_FULLSCREEN,
+            WindowManager.LayoutParams.FLAG_FULLSCREEN,
+        )
+
         setUpActionBar()
         nav_view.setNavigationItemSelectedListener(this)
 
         FireStoreClass().loadUserData(this)
+
+        fab_create_board.setOnClickListener{
+            startActivity(Intent(this, CreateBoardActivity::class.java))
+        }
 
     }
 
