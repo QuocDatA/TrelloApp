@@ -9,9 +9,15 @@ import com.quocdat.trelloapp.activities.MyProfileActivity
 
 object Constants {
     const val USERS: String = "users"
+    const val BOARD: String = "board"
+    const val TASK_LIST: String = "taskList"
+
     const val IMAGE: String = "image"
     const val MOBILE: String = "mobile"
     const val NAME: String = "name"
+    const val DOCUMENT_ID: String = "documentId"
+
+    const val ASSIGNED_TO: String = "assignedTo"
 
     const val READ_STORAGE_PERMISSION_CODE = 1
     const val PICK_IMAGE_REQUEST_CODE = 2

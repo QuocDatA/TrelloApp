@@ -4,8 +4,11 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Kotlin Udemy/TrelloApp/app/src/main/res/drawable/ic_baseline_add.xml" value="0.117" />
+        <entry key="..\:/Kotlin Udemy/TrelloApp/app/src/main/res/drawable/ic_baseline_done_24.xml" value="0.1145" />
         <entry key="..\:/Kotlin Udemy/TrelloApp/app/src/main/res/drawable/ic_baseline_person.xml" value="0.117" />
         <entry key="..\:/Kotlin Udemy/TrelloApp/app/src/main/res/drawable/ic_black_color_back.xml" value="0.117" />
+        <entry key="..\:/Kotlin Udemy/TrelloApp/app/src/main/res/drawable/ic_delete.xml" value="0.1145" />
+        <entry key="..\:/Kotlin Udemy/TrelloApp/app/src/main/res/drawable/ic_done.xml" value="0.1145" />
         <entry key="..\:/Kotlin Udemy/TrelloApp/app/src/main/res/drawable/ic_navigation_menu.xml" value="0.117" />
         <entry key="..\:/Kotlin Udemy/TrelloApp/app/src/main/res/drawable/ic_white_color_back.xml" value="0.117" />
         <entry key="..\:/Kotlin Udemy/TrelloApp/app/src/main/res/drawable/nav_header_main_background.xml" value="0.1085" />
@@ -18,8 +21,11 @@
         <entry key="..\:/Kotlin Udemy/TrelloApp/app/src/main/res/layout/activity_sign_in.xml" value="0.175" />
         <entry key="..\:/Kotlin Udemy/TrelloApp/app/src/main/res/layout/activity_sign_up.xml" value="0.2" />
         <entry key="..\:/Kotlin Udemy/TrelloApp/app/src/main/res/layout/activity_splash.xml" value="0.259375" />
+        <entry key="..\:/Kotlin Udemy/TrelloApp/app/src/main/res/layout/activity_task_list.xml" value="0.2" />
         <entry key="..\:/Kotlin Udemy/TrelloApp/app/src/main/res/layout/app_bar_main.xml" value="0.264" />
         <entry key="..\:/Kotlin Udemy/TrelloApp/app/src/main/res/layout/dialog_progress.xml" value="0.2" />
+        <entry key="..\:/Kotlin Udemy/TrelloApp/app/src/main/res/layout/item_board.xml" value="0.25833333333333336" />
+        <entry key="..\:/Kotlin Udemy/TrelloApp/app/src/main/res/layout/item_task.xml" value="0.1" />
         <entry key="..\:/Kotlin Udemy/TrelloApp/app/src/main/res/layout/main_content.xml" value="0.259375" />
         <entry key="..\:/Kotlin Udemy/TrelloApp/app/src/main/res/layout/nav_header_main.xml" value="0.259375" />
         <entry key="..\:/Kotlin Udemy/TrelloApp/app/src/main/res/menu/activity_main_drawer.xml" value="0.25833333333333336" />
