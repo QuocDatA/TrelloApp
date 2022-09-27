@@ -5,11 +5,13 @@ import android.os.Parcelable
 
 data class Task (
     var title: String = "",
-    val createBy: String = ""
+    val createBy: String = "",
+    val cards: ArrayList<Card> = ArrayList()
 ): Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readString()!!,
-        parcel.readString()!!
+        parcel.readString()!!,
+        parcel.createTypedArrayList(Card.CREATOR)!!
     ) {
     }
 
@@ -20,7 +22,8 @@ data class Task (
     override fun writeToParcel(p0: Parcel, p1: Int) = with(p0) {
         writeString(title)
         writeString(createBy)
-    }
+        writeTypedList(cards)
+     }
 
     companion object CREATOR : Parcelable.Creator<Task> {
         override fun createFromParcel(parcel: Parcel): Task {

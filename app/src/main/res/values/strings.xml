@@ -30,4 +30,5 @@
     <string name="action_add_list">Add List</string>
     <string name="action_add_card">Add Card</string>
     <string name="list_name">List name</string>
+    <string name="members">Members</string>
 </resources>

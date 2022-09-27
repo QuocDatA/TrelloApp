@@ -41,6 +41,23 @@ class FireStoreClass {
             }
     }
 
+    fun addUpdateTaskList(activity: TaskListActivity, board: Board){
+        val taskListHashMap = HashMap<String, Any>()
+        taskListHashMap[Constants.TASK_LIST] = board.taskList
+
+        mFireStore.collection(Constants.BOARD)
+            .document(board.documentID)
+            .update(taskListHashMap)
+            .addOnSuccessListener {
+                Log.i(activity.javaClass.simpleName, "Update TaskList Successfully!")
+                activity.addUpdateTaskListSuccess()
+            }.addOnFailureListener{
+                    exception ->
+                activity.hideProgressDialog()
+                Log.i(activity.javaClass.simpleName, "Error while updating taskList! ", exception)
+            }
+    }
+
     fun updateUserProfileData(activity: MyProfileActivity,
                               userHashMap: HashMap<String, Any>){
 
