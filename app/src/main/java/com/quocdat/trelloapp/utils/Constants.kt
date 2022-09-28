@@ -12,6 +12,8 @@ object Constants {
     const val BOARD: String = "board"
     const val TASK_LIST: String = "taskList"
     const val BOARD_DETAIL: String = "board_detail"
+    const val ID: String = "id"
+    const val EMAIL: String = "email"
 
     const val IMAGE: String = "image"
     const val MOBILE: String = "mobile"

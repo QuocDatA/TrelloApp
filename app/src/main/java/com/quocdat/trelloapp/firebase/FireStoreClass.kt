@@ -4,7 +4,6 @@ import android.app.Activity
 import android.util.Log
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.DocumentId
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.SetOptions
 import com.quocdat.trelloapp.activities.*
@@ -110,6 +109,26 @@ class FireStoreClass {
             }
     }
 
+    //load data from firebase to view
+    fun getMemberDetails(activity: MemberActivity, email: String){
+        mFireStore.collection(Constants.USERS)
+            .whereEqualTo(Constants.EMAIL, email)
+            .get()
+            .addOnSuccessListener {
+                    document ->
+                if (document.documents.size >0){
+                    val user = document.documents[0].toObject(Users::class.java)!!
+                    activity.memberDetails(user)
+                }else{
+                    activity.hideProgressDialog()
+                    activity.showErrorSnackBar("No such member found")
+                }
+            }.addOnFailureListener{
+                activity.hideProgressDialog()
+                Log.i(activity.javaClass.simpleName, "Error while getting user detail ")
+            }
+    }
+
     fun getBoardDetails(activity: TaskListActivity, documentId: String){
         mFireStore.collection(Constants.BOARD)
             .document(documentId)
@@ -125,6 +144,25 @@ class FireStoreClass {
             }.addOnFailureListener{
                 activity.hideProgressDialog()
                 Log.i(activity.javaClass.simpleName, "Error while creating a board")
+            }
+    }
+
+    fun getMembersList(activity: MemberActivity, assignedTo: ArrayList<String>){
+        mFireStore.collection(Constants.USERS)
+            .whereIn(Constants.ID, assignedTo)
+            .get()
+            .addOnSuccessListener {
+                    document ->
+                Log.i(activity.javaClass.simpleName, document.documents.toString())
+                val userList: ArrayList<Users> = ArrayList()
+                for (i in document.documents){
+                    val user = i.toObject(Users::class.java)!!
+                    userList.add(user)
+                }
+                activity.setUpMembersList(userList)
+            }.addOnFailureListener{
+                activity.hideProgressDialog()
+                Log.i(activity.javaClass.simpleName, "Error while getting a user")
             }
     }
 
@@ -155,5 +193,24 @@ class FireStoreClass {
             currentUserID = currentUser.uid.toString()
 
         return currentUserID
+    }
+
+    //update user to board
+    fun assignedMemberToBoard(activity: MemberActivity, board: Board, user: Users){
+
+        val assignedToHashMap = HashMap<String, Any>()
+        assignedToHashMap[Constants.ASSIGNED_TO] = board.assignedTo
+
+        mFireStore.collection(Constants.BOARD)
+            .document(board.documentID)
+            .update(assignedToHashMap)
+            .addOnSuccessListener {
+                Log.i(activity.javaClass.simpleName, "Assigned member to board")
+                activity.assignedMemberSuccess(user)
+            }.addOnFailureListener{
+                    e ->
+                activity.hideProgressDialog()
+                Log.i(activity.javaClass.simpleName, "Error while assigning to board")
+            }
     }
 }

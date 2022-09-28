@@ -72,8 +72,8 @@ open class TaskListItemsAdapter(private val context: Context,
             }
 
             holder.itemView.ib_close_list_name.setOnClickListener {
-                holder.itemView.ll_title_view.visibility = View.VISIBLE
-                holder.itemView.cv_edit_task_list_name.visibility = View.GONE
+                holder.itemView.tv_add_task_list.visibility = View.VISIBLE
+                holder.itemView.cv_add_task_list_name.visibility = View.GONE
             }
 
             holder.itemView.ib_done_edit_list_name.setOnClickListener {
