@@ -1,5 +1,6 @@
 package com.quocdat.trelloapp.adapters
 
+import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.content.Context
 import android.content.res.Resources
@@ -29,6 +30,7 @@ open class TaskListItemsAdapter(private val context: Context,
         return MyViewHolder(view)
     }
 
+    @SuppressLint("RecyclerView")
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val model = list[position]
         if (holder is MyViewHolder){
@@ -121,10 +123,20 @@ open class TaskListItemsAdapter(private val context: Context,
 
             val adapter = CardListItemsAdapter(context, model.cards)
             holder.itemView.rv_card_list.adapter = adapter
+
+            adapter.setOnClickListener(
+                object : CardListItemsAdapter.OnClickListener{
+                    override fun onClick(cardPosition: Int) {
+                        if (context is TaskListActivity){
+                            context.cardDetails(position, cardPosition)
+                        }
+                    }
+                }
+            )
         }
     }
 
-    fun alertDialogForDeleteList(position: Int, title: String){
+    private fun alertDialogForDeleteList(position: Int, title: String){
         val builder = AlertDialog.Builder(context)
 
         builder.setTitle("Alert")

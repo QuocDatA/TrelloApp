@@ -1,5 +1,6 @@
 package com.quocdat.trelloapp.activities
 
+import android.app.Activity
 import android.app.Dialog
 import android.os.Bundle
 import android.view.Menu
@@ -21,6 +22,7 @@ class MemberActivity : BaseActivity() {
 
     private lateinit var mBoardDetails: Board
     private var mAssignedMembersList: ArrayList<Users> = ArrayList()
+    private var anyChangesMade: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -57,6 +59,13 @@ class MemberActivity : BaseActivity() {
         return super.onOptionsItemSelected(item)
     }
 
+    override fun onBackPressed() {
+        if (anyChangesMade){
+            setResult(Activity.RESULT_OK)
+        }
+        super.onBackPressed()
+    }
+
     private fun dialogAddMember(){
         val dialog = Dialog(this)
         dialog.setCancelable(false)
@@ -87,6 +96,9 @@ class MemberActivity : BaseActivity() {
     fun assignedMemberSuccess(user: Users){
         hideProgressDialog()
         mAssignedMembersList.add(user)
+
+        anyChangesMade = true
+
         setUpMembersList(mAssignedMembersList)
     }
 

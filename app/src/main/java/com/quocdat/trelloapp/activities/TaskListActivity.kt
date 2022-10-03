@@ -1,5 +1,6 @@
 package com.quocdat.trelloapp.activities
 
+import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -21,7 +22,13 @@ import kotlinx.android.synthetic.main.activity_task_list.*
 
 class TaskListActivity : BaseActivity() {
 
+    companion object{
+        const val MEMBER_REQUEST_CODE = 13
+        const val CARD_DETAILS_REQUEST_CODE = 14
+    }
+
     private lateinit var mBoardDetails: Board
+    private var mBoardDocumentId: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,16 +39,20 @@ class TaskListActivity : BaseActivity() {
             WindowManager.LayoutParams.FLAG_FULLSCREEN,
         )
 
-
-        var boardDocumentId = ""
         if (intent.hasExtra(Constants.DOCUMENT_ID)){
-            boardDocumentId = intent.getStringExtra(Constants.DOCUMENT_ID).toString()
+            mBoardDocumentId = intent.getStringExtra(Constants.DOCUMENT_ID).toString()
 
         }
         showProgressDialog(resources.getString(R.string.please_wait))
-        FireStoreClass().getBoardDetails(this, boardDocumentId)
+        FireStoreClass().getBoardDetails(this, mBoardDocumentId)
 
 
+    }
+
+    override fun onResume() {
+        super.onResume()
+        showProgressDialog(resources.getString(R.string.please_wait))
+        FireStoreClass().getBoardDetails(this, mBoardDocumentId)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -54,10 +65,27 @@ class TaskListActivity : BaseActivity() {
             R.id.action_members ->{
                 val intent = Intent(this, MemberActivity::class.java)
                 intent.putExtra(Constants.BOARD_DETAIL, mBoardDetails)
-                startActivity(intent)
+                startActivityForResult(intent, MEMBER_REQUEST_CODE)
             }
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (resultCode == Activity.RESULT_OK && requestCode == MEMBER_REQUEST_CODE || requestCode == CARD_DETAILS_REQUEST_CODE){
+            FireStoreClass().getBoardDetails(this, mBoardDocumentId)
+        }else{
+            Log.i("Cancelled", "Cancelled ")
+        }
+    }
+
+    fun cardDetails(taskListPosition: Int, cardPosition: Int){
+        val intent = Intent(this, CardDetailsActivity::class.java)
+        intent.putExtra(Constants.BOARD_DETAIL, mBoardDetails)
+        intent.putExtra(Constants.TASK_LIST_ITEM_POSITION, taskListPosition)
+        intent.putExtra(Constants.CARD_LIST_ITEM_POSITION, cardPosition)
+        startActivityForResult(intent, CARD_DETAILS_REQUEST_CODE)
     }
 
     private fun setUpActionBar(){
