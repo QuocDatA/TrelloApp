@@ -44,5 +44,11 @@
     <string name="select_due_date">Select Due Date</string>
     <string name="hint_card_name">Card name</string>
     <string name="delete_card">Delete Card</string>
+    <string name="str_select_label_color">Select Label Color</string>
+
+    <string name="alert">Alert</string>
+    <string name="confirmation_message_to_delete_card">Are you sure you want \'%1$s\'?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
 
 </resources>

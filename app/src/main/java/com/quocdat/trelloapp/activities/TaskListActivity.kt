@@ -16,6 +16,7 @@ import com.quocdat.trelloapp.firebase.FireStoreClass
 import com.quocdat.trelloapp.models.Board
 import com.quocdat.trelloapp.models.Card
 import com.quocdat.trelloapp.models.Task
+import com.quocdat.trelloapp.models.Users
 import com.quocdat.trelloapp.utils.Constants
 import kotlinx.android.synthetic.main.activity_create_board.*
 import kotlinx.android.synthetic.main.activity_task_list.*
@@ -29,6 +30,7 @@ class TaskListActivity : BaseActivity() {
 
     private lateinit var mBoardDetails: Board
     private var mBoardDocumentId: String = ""
+    private lateinit var mAssignedMemberDetailList: ArrayList<Users>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

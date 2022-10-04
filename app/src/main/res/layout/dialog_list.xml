@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.cardview.widget.CardView
+        android:background="@drawable/shape_dialog_rounded"
+        app:cardCornerRadius="@dimen/dialog_list_cv_elevation_and_corner_radius"
+        android:elevation="@dimen/dialog_list_cv_elevation_and_corner_radius"
+        app:cardUseCompatPadding="true"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:gravity="center"
+            android:padding="@dimen/dialog_list_content_padding"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/tv_title_selected_color"
+                android:padding="@dimen/dialog_list_title_padding"
+                android:textColor="@color/primary_text_color"
+                android:textSize="@dimen/dialog_list_title_text_size"
+                android:textStyle="bold"
+                android:visibility="visible"
+                tools:text="Select"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvList"
+                tools:listitem="@layout/item_label_color"
+                tools:itemCount="1"
+                android:visibility="visible"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</FrameLayout>
