@@ -7,17 +7,17 @@ import android.view.LayoutInflater
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.quocdat.trelloapp.R
-import com.quocdat.trelloapp.adapters.LabelColorListItemsAdapter
+import com.quocdat.trelloapp.adapters.MemberListItemAdapter
+import com.quocdat.trelloapp.models.Users
 import kotlinx.android.synthetic.main.dialog_list.view.*
 
-abstract class LabelColorListDialog(
+abstract class MemberListDialog(
     context: Context,
     private val title: String = "",
-    private var list: ArrayList<String>,
-    private var mSelectedColor: String = ""
+    private var list: ArrayList<Users>
 ): Dialog(context) {
 
-    private var adapter: LabelColorListItemsAdapter? = null
+    private var adapter: MemberListItemAdapter? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState ?: Bundle())
@@ -34,17 +34,17 @@ abstract class LabelColorListDialog(
         view.tv_title.text = title
 
         view.rvList.layoutManager = LinearLayoutManager(context)
-        adapter = LabelColorListItemsAdapter(context, list, mSelectedColor)
+        adapter = MemberListItemAdapter(context, list)
         view.rvList.adapter = adapter
 
-        adapter!!.onItemClickListener = object : LabelColorListItemsAdapter.OnItemClickListener{
-            override fun onClick(position: Int, color: String) {
+        adapter!!.onClickListener = object : MemberListItemAdapter.OnClickListener {
+            override fun onClick(position: Int, users: Users, selected: String) {
                 dismiss()
-                onItemSelected(color)
+                onItemSelected(users, selected)
             }
 
         }
     }
 
-    protected abstract fun onItemSelected(color: String)
+    protected abstract fun onItemSelected(users: Users, action: String)
 }

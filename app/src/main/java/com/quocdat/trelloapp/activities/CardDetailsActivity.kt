@@ -11,10 +11,12 @@ import android.widget.Toast
 import com.quocdat.trelloapp.R
 import com.quocdat.trelloapp.base.BaseActivity
 import com.quocdat.trelloapp.dialogs.LabelColorListDialog
+import com.quocdat.trelloapp.dialogs.MemberListDialog
 import com.quocdat.trelloapp.firebase.FireStoreClass
 import com.quocdat.trelloapp.models.Board
 import com.quocdat.trelloapp.models.Card
 import com.quocdat.trelloapp.models.Task
+import com.quocdat.trelloapp.models.Users
 import com.quocdat.trelloapp.utils.Constants
 import kotlinx.android.synthetic.main.activity_card_details.*
 
@@ -24,6 +26,7 @@ class CardDetailsActivity : BaseActivity() {
     private var mTaskListPosition = -1
     private var mCardListPosition = -1
     private var mSelectedColor = ""
+    private lateinit var mMemberDetailsList: ArrayList<Users>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -59,6 +62,10 @@ class CardDetailsActivity : BaseActivity() {
         tv_select_color.setOnClickListener {
             listColorDialog()
         }
+
+        tv_select_members.setOnClickListener {
+            memberListDialog()
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -76,6 +83,37 @@ class CardDetailsActivity : BaseActivity() {
             }
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    private fun memberListDialog(){
+        var cardAssignedMemberList = mBoardDetails
+            .taskList[mTaskListPosition]
+            .cards[mCardListPosition].assignedTo
+
+        if (cardAssignedMemberList.size > 0){
+            for (i in mMemberDetailsList.indices){
+                for (j in cardAssignedMemberList){
+                    if (mMemberDetailsList[i].id == j){
+                        mMemberDetailsList[i].selected = true
+                    }
+                }
+            }
+        }else{
+            for (i in mMemberDetailsList.indices){
+                mMemberDetailsList[i].selected = false
+            }
+        }
+
+        val listDialog = object : MemberListDialog(
+            this,
+            resources.getString(R.string.select_member),
+            mMemberDetailsList
+        ){
+            override fun onItemSelected(users: Users, action: String) {
+
+            }
+        }
+        listDialog.show()
     }
 
     private fun colorsList(): ArrayList<String>{
@@ -194,6 +232,10 @@ class CardDetailsActivity : BaseActivity() {
         if (intent.hasExtra(Constants.CARD_LIST_ITEM_POSITION)){
             mCardListPosition = intent.getIntExtra(
                 Constants.CARD_LIST_ITEM_POSITION, -1)
+        }
+        if (intent.hasExtra(Constants.BOARD_MEMBERS_LIST)){
+            mMemberDetailsList = intent.getParcelableArrayListExtra(
+                Constants.BOARD_MEMBERS_LIST)!!
         }
     }
 }

@@ -82,11 +82,17 @@ class TaskListActivity : BaseActivity() {
         }
     }
 
+    fun boardMemberDetailsList(list: ArrayList<Users>){
+        mAssignedMemberDetailList = list
+        hideProgressDialog()
+    }
+
     fun cardDetails(taskListPosition: Int, cardPosition: Int){
         val intent = Intent(this, CardDetailsActivity::class.java)
         intent.putExtra(Constants.BOARD_DETAIL, mBoardDetails)
         intent.putExtra(Constants.TASK_LIST_ITEM_POSITION, taskListPosition)
         intent.putExtra(Constants.CARD_LIST_ITEM_POSITION, cardPosition)
+        intent.putExtra(Constants.BOARD_MEMBERS_LIST, mAssignedMemberDetailList)
         startActivityForResult(intent, CARD_DETAILS_REQUEST_CODE)
     }
 
@@ -183,5 +189,8 @@ class TaskListActivity : BaseActivity() {
 
         val taskListItemsAdapter = TaskListItemsAdapter(this, board.taskList)
         rv_task_list.adapter = taskListItemsAdapter
+
+        showProgressDialog(resources.getString(R.string.please_wait))
+        FireStoreClass().getMembersList(this, mBoardDetails.assignedTo)
     }
 }

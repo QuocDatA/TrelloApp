@@ -156,7 +156,7 @@ class FireStoreClass {
             }
     }
 
-    fun getMembersList(activity: MemberActivity, assignedTo: ArrayList<String>){
+    fun getMembersList(activity: Activity, assignedTo: ArrayList<String>){
         mFireStore.collection(Constants.USERS)
             .whereIn(Constants.ID, assignedTo)
             .get()
@@ -168,9 +168,15 @@ class FireStoreClass {
                     val user = i.toObject(Users::class.java)!!
                     userList.add(user)
                 }
-                activity.setUpMembersList(userList)
+                if (activity is MemberActivity)
+                    activity.setUpMembersList(userList)
+                else if (activity is TaskListActivity)
+                    activity.boardMemberDetailsList(userList)
             }.addOnFailureListener{
-                activity.hideProgressDialog()
+                if (activity is MemberActivity)
+                    activity.hideProgressDialog()
+                else if (activity is TaskListActivity)
+                    activity.hideProgressDialog()
                 Log.i(activity.javaClass.simpleName, "Error while getting a user")
             }
     }

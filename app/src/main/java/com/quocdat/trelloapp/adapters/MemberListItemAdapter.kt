@@ -9,12 +9,16 @@ import com.bumptech.glide.Glide
 import com.google.firebase.firestore.auth.User
 import com.quocdat.trelloapp.R
 import com.quocdat.trelloapp.models.Users
+import com.quocdat.trelloapp.utils.Constants
 import kotlinx.android.synthetic.main.item_members.view.*
 
 class MemberListItemAdapter(
     private val context: Context,
     private var list: ArrayList<Users>
 ): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+
+    var onClickListener: OnClickListener? = null
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return MyViewHolder(LayoutInflater.from(context)
             .inflate(R.layout.item_members, parent, false))
@@ -33,6 +37,20 @@ class MemberListItemAdapter(
 
             holder.itemView.tv_members_name.text = model.name
             holder.itemView.tv_members_email.text = model.email
+
+            if (model.selected){
+                holder.itemView.iv_selected_member.visibility = View.VISIBLE
+            }else{
+                holder.itemView.iv_selected_member.visibility = View.GONE
+            }
+
+            if (onClickListener != null){
+                if (model.selected){
+                    onClickListener!!.onClick(position, model, Constants.UNSELECT)
+                }else{
+                    onClickListener!!.onClick(position, model, Constants.SELECT)
+                }
+            }
         }
     }
 
@@ -41,4 +59,8 @@ class MemberListItemAdapter(
     }
 
     private class MyViewHolder(view: View): RecyclerView.ViewHolder(view)
+
+    interface OnClickListener {
+        fun onClick(position: Int, users: Users, selected: String)
+    }
 }
