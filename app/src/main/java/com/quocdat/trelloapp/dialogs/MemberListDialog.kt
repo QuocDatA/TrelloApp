@@ -3,6 +3,7 @@ package com.quocdat.trelloapp.dialogs
 import android.app.Dialog
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -33,16 +34,20 @@ abstract class MemberListDialog(
     private fun setUpRecyclerview(view: View){
         view.tv_title.text = title
 
-        view.rvList.layoutManager = LinearLayoutManager(context)
-        adapter = MemberListItemAdapter(context, list)
-        view.rvList.adapter = adapter
+        if (list.size > 0){
 
-        adapter!!.onClickListener = object : MemberListItemAdapter.OnClickListener {
-            override fun onClick(position: Int, users: Users, selected: String) {
-                dismiss()
-                onItemSelected(users, selected)
-            }
+            view.rvList.layoutManager = LinearLayoutManager(context)
+            adapter = MemberListItemAdapter(context, list)
+            view.rvList.adapter = adapter
 
+            adapter!!.setOnClickListener(object :
+            MemberListItemAdapter.OnClickListener{
+                override fun onClick(position: Int, users: Users, action: String) {
+                    //dismiss()
+                    onItemSelected(users, action)
+                    Log.i("ClickItem: ", "onClick2: ")
+                }
+            })
         }
     }
 

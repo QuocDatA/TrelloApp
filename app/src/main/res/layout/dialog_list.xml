@@ -33,7 +33,7 @@
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvList"
-                tools:listitem="@layout/item_label_color"
+                tools:listitem="@layout/item_members"
                 tools:itemCount="1"
                 android:visibility="visible"
                 android:layout_width="match_parent"

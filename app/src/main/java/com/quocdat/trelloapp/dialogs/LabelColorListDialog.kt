@@ -3,6 +3,7 @@ package com.quocdat.trelloapp.dialogs
 import android.app.Dialog
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -41,6 +42,7 @@ abstract class LabelColorListDialog(
             override fun onClick(position: Int, color: String) {
                 dismiss()
                 onItemSelected(color)
+                Log.i("ClickItem: ", "onClick2: ")
             }
 
         }

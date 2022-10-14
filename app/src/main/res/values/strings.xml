@@ -51,4 +51,6 @@
     <string name="yes">Yes</string>
     <string name="no">No</string>
 
+    <string name="default_notification_channel_id">trello_notification_channel_id</string>
+
 </resources>

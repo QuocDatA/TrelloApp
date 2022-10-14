@@ -28,6 +28,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_card_selected_member_list"
+            android:layout_marginTop="@dimen/card_details_value_marginTop"
+            tools:listitem="@layout/item_card_selected_member"
+            tools:itemCount="1"
+            android:visibility="gone"
+            tools:visibility="visible"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
         <TextView
             android:id="@+id/tv_members_name"
             android:padding="@dimen/item_card_member_text_padding"

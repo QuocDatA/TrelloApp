@@ -106,11 +106,13 @@
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rv_selected_member_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/card_details_value_marginTop"
                     android:visibility="gone"
-                    tools:visibility="visible"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    tools:itemCount="1"
+                    tools:listitem="@layout/item_card_selected_member"
+                    tools:visibility="visible" />
 
                 <TextView
                     android:text="@string/due_date"

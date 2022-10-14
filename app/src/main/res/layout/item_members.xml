@@ -19,12 +19,13 @@
             android:src="@drawable/ic_user_place_holder"
             app:civ_border_color="@color/primary_text_color"
             app:civ_border_width="@dimen/item_board_image_circular_border_width"
-            android:layout_width="@dimen/item_board_image_size"
-            android:layout_height="@dimen/item_board_image_size"/>
+            android:layout_width="@dimen/item_selected_member_image_size"
+            android:layout_height="@dimen/item_selected_member_image_size"/>
 
         <LinearLayout
             android:orientation="vertical"
             android:layout_marginStart="@dimen/item_board_name_layout_marginStart"
+            android:layout_weight="1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -50,7 +51,7 @@
             android:id="@+id/iv_selected_member"
             android:layout_gravity="center_vertical|end"
             android:layout_marginEnd="@dimen/item_label_color_selected_image_marginEnd"
-            android:src="@drawable/ic_white_done"
+            android:src="@drawable/ic_accent_done"
             android:visibility="gone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>

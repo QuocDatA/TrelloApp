@@ -30,7 +30,7 @@ class TaskListActivity : BaseActivity() {
 
     private lateinit var mBoardDetails: Board
     private var mBoardDocumentId: String = ""
-    private lateinit var mAssignedMemberDetailList: ArrayList<Users>
+    lateinit var mAssignedMemberDetailList: ArrayList<Users>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -82,9 +82,28 @@ class TaskListActivity : BaseActivity() {
         }
     }
 
+    fun updateCardsInTaskList(taskListPosition: Int, cards: ArrayList<Card>) {
+        mBoardDetails.taskList.removeAt(mBoardDetails.taskList.size - 1)
+
+        mBoardDetails.taskList[taskListPosition].cards = cards
+
+        showProgressDialog(resources.getString(R.string.please_wait))
+        FireStoreClass().addUpdateTaskList(this, mBoardDetails)
+    }
+
     fun boardMemberDetailsList(list: ArrayList<Users>){
         mAssignedMemberDetailList = list
         hideProgressDialog()
+
+        val addTaskList = Task(resources.getString(R.string.action_add_list))
+        mBoardDetails.taskList.add(addTaskList)
+
+        rv_task_list.layoutManager = LinearLayoutManager(this,
+            LinearLayoutManager.HORIZONTAL, false)
+        rv_task_list.setHasFixedSize(true)
+
+        val taskListItemsAdapter = TaskListItemsAdapter(this, mBoardDetails.taskList)
+        rv_task_list.adapter = taskListItemsAdapter
     }
 
     fun cardDetails(taskListPosition: Int, cardPosition: Int){
@@ -179,16 +198,6 @@ class TaskListActivity : BaseActivity() {
 
         hideProgressDialog()
         setUpActionBar()
-
-        val addTaskList = Task(resources.getString(R.string.action_add_list))
-        board.taskList.add(addTaskList)
-
-        rv_task_list.layoutManager = LinearLayoutManager(this,
-            LinearLayoutManager.HORIZONTAL, false)
-        rv_task_list.setHasFixedSize(true)
-
-        val taskListItemsAdapter = TaskListItemsAdapter(this, board.taskList)
-        rv_task_list.adapter = taskListItemsAdapter
 
         showProgressDialog(resources.getString(R.string.please_wait))
         FireStoreClass().getMembersList(this, mBoardDetails.assignedTo)
