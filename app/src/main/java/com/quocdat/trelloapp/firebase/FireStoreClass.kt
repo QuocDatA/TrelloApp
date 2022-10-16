@@ -66,7 +66,7 @@ class FireStoreClass {
             }
     }
 
-    fun updateUserProfileData(activity: MyProfileActivity,
+    fun updateUserProfileData(activity: Activity,
                               userHashMap: HashMap<String, Any>){
 
         mFireStore.collection(Constants.USERS)
@@ -76,10 +76,26 @@ class FireStoreClass {
                 Log.i(activity.javaClass.simpleName, "Profile Data Updated")
                 Toast.makeText(activity, "Profile updated successfully!", Toast.LENGTH_LONG
                 ).show()
-                activity.updateProfileSuccess()
+                when(activity){
+                    is MainActivity ->{
+                        activity.tokenUpdateSuccess()
+                    }
+                    is MyProfileActivity -> {
+                        activity.updateProfileSuccess()
+                    }
+                }
+
             }.addOnFailureListener{
                 e ->
-                activity.hideProgressDialog()
+                when(activity){
+                    is MainActivity ->{
+                        activity.hideProgressDialog()
+                    }
+                    is MyProfileActivity -> {
+                        activity.hideProgressDialog()
+                    }
+                }
+
                 Log.i(activity.javaClass.simpleName, "Error while creating a board")
                 Toast.makeText(activity, "Error when creating the board", Toast.LENGTH_LONG
                 ).show()

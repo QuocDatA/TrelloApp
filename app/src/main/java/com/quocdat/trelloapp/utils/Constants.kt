@@ -24,6 +24,10 @@ object Constants {
     const val SELECT: String = "select"
     const val UNSELECT: String = "unselect"
 
+    const val TRELLO_PREFERENCE = "TrelloPrefs"
+    const val FCM_TOKEN_UPDATED = "fcmTokenUpdated"
+    const val FCM_TOKEN = "fcmToken"
+
     const val READ_STORAGE_PERMISSION_CODE = 1
     const val PICK_IMAGE_REQUEST_CODE = 2
 
